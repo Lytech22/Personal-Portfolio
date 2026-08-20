@@ -1,5 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
-import { Reveal } from "./reveal";
+import { Reveal, Sequence, SequenceItem } from "./reveal";
 
 const currentProjects = [
   { number: "01", title: "Smart Apartment Parking System" },
@@ -99,8 +99,8 @@ const skillGroups: Array<[string, string[]]> = [
 export function Hero() {
   return <main id="top" className="editorial-main">
     <section className="editorial-hero" aria-labelledby="hero-title">
-      <div className="hero-copy"><Reveal><p className="eyebrow">Leul Yitbarek <span>/</span> Full-stack developer</p><h1 id="hero-title">I build practical web systems around <em>real workflows.</em></h1><p className="hero-location">Based in Addis Ababa, Ethiopia.</p><p className="hero-support">Computer Science student working across frontend, backend, databases, and product workflows.</p><div className="hero-actions"><a className="text-link text-link-dark" href="#work">View projects <ArrowUpRight size={15} /></a><a className="text-link" href="https://github.com/Lytech22" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={15} /></a></div></Reveal></div>
-      <Reveal className="currently" delay={0.12}><p className="section-kicker">Currently</p>{currentProjects.map((project) => <a href="#work" className="current-item" key={project.number}><span>{project.number}</span><span>{project.title}</span></a>)}<div className="hero-stack"><p className="section-kicker">Stack</p><p>Laravel / React / TypeScript / PostgreSQL</p></div></Reveal>
+      <div className="hero-copy"><Sequence delay={0.08} stagger={0.075}><SequenceItem><p className="eyebrow">Leul Yitbarek <span>/</span> Full-stack developer</p></SequenceItem><SequenceItem><h1 id="hero-title">I build practical web systems around <em>real workflows.</em></h1></SequenceItem><SequenceItem><div><p className="hero-location">Based in Addis Ababa, Ethiopia.</p><p className="hero-support">Computer Science student working across frontend, backend, databases, and product workflows.</p></div></SequenceItem><SequenceItem><div className="hero-actions"><a className="text-link text-link-dark" href="#work">View projects <ArrowUpRight size={15} /></a><a className="text-link" href="https://github.com/Lytech22" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={15} /></a></div></SequenceItem></Sequence></div>
+      <Reveal className="currently" delay={0.42}><p className="section-kicker">Currently</p>{currentProjects.map((project) => <a href="#work" className="current-item" key={project.number}><span>{project.number}</span><span>{project.title}</span></a>)}<div className="hero-stack"><p className="section-kicker">Stack</p><p>Laravel / React / TypeScript / PostgreSQL</p></div></Reveal>
     </section>
     <div className="hero-rule" />
     <SelectedWork />
@@ -133,7 +133,7 @@ function SelectedWork() {
                   {project.stack.length > 0 && <div className="project-stack">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>}
                   <p className="repository-status">{project.repository}</p>
                 </div>
-                <div className="screenshot-placeholder" aria-label={`${project.title} screenshot placeholder`}><span>{project.title}</span><small>Screenshot placeholder</small></div>
+                <Reveal className="project-visual" mode="scale"><div className="screenshot-placeholder" aria-label={`${project.title} screenshot placeholder`}><span>{project.title}</span><small>Screenshot placeholder</small></div></Reveal>
               </article>
             </Reveal>
           ))}
@@ -142,7 +142,7 @@ function SelectedWork() {
 
       <div className="work-group compact-work" aria-labelledby="collaboration-work-title">
         <div className="work-group-header"><p id="collaboration-work-title" className="section-kicker">02 / Collaborations &amp; product work</p><span>Shared builds and early business concepts</span></div>
-        <div className="compact-project-list">
+        <Reveal className="compact-project-list">
           {collaborationProjects.map((project) => (
             <article className="compact-project" key={project.number}>
               <div className="compact-project-heading"><span className="compact-number">{project.number}</span><div><p className="project-label">{project.label}</p><h3>{project.title}</h3></div></div>
@@ -150,28 +150,28 @@ function SelectedWork() {
               <span className="compact-status">{project.status}</span>
             </article>
           ))}
-        </div>
+        </Reveal>
       </div>
 
-      <div className="work-group lab-work" aria-labelledby="lab-work-title">
+      <Reveal className="work-group lab-work">
         <div className="lab-intro"><p className="section-kicker">03 / Lab &amp; private work</p><h3 id="lab-work-title">More in the lab.</h3><p>Not everything I work on is public. I also use private repositories for experiments, coursework, early product ideas, internal systems, and projects that are not ready to publish.</p></div>
         <div className="lab-list">{labRows.map((item, index) => <div key={item}><span>{String(index + 1).padStart(2, "0")}</span><span>{item}</span><small>Private</small></div>)}</div>
         <p className="lab-note">More projects will be published as they reach a presentable stage.</p>
-      </div>
+      </Reveal>
     </section>
   );
 }
 
 function About() {
-  return <section id="about" className="content-section about-section" aria-labelledby="about-title"><SectionHeader index="02" title="About" /><div className="editorial-two-col"><h2 id="about-title">I like understanding the problem before writing the code.</h2><p>My background spans customer service, sales, operations, and software development. Those roles taught me how people communicate, how workflows fail, and how important it is to understand the real problem before building a solution.</p></div></section>;
+  return <section id="about" className="content-section about-section" aria-labelledby="about-title"><SectionHeader index="02" title="About" /><Sequence className="editorial-two-col" inView stagger={0.1}><SequenceItem><h2 id="about-title">I like understanding the problem before writing the code.</h2></SequenceItem><SequenceItem><p>My background spans customer service, sales, operations, and software development. Those roles taught me how people communicate, how workflows fail, and how important it is to understand the real problem before building a solution.</p></SequenceItem></Sequence></section>;
 }
 
 function Experience() {
-  return <section id="experience" className="content-section" aria-labelledby="experience-title"><SectionHeader id="experience-title" index="03" title="Experience" intro="Work that taught me how people, systems, and expectations meet." /><div className="experience-list">{experiences.map(([date, company, role, description]) => <article className="experience-row" key={`${company}-${date}`}><time>{date}</time><div><h3>{company}</h3><p className="experience-role">{role}</p><p className="experience-description">{description}</p></div><span className="row-arrow">↗</span></article>)}</div></section>;
+  return <section id="experience" className="content-section" aria-labelledby="experience-title"><SectionHeader id="experience-title" index="03" title="Experience" intro="Work that taught me how people, systems, and expectations meet." /><Reveal className="experience-list">{experiences.map(([date, company, role, description]) => <article className="experience-row" key={`${company}-${date}`}><time>{date}</time><div><h3>{company}</h3><p className="experience-role">{role}</p><p className="experience-description">{description}</p></div><span className="row-arrow">↗</span></article>)}</Reveal></section>;
 }
 
 function Skills() {
-  return <section id="skills" className="content-section" aria-labelledby="skills-title"><SectionHeader id="skills-title" index="04" title="Skills" intro="A practical toolkit for taking an idea from workflow to working software." /><div className="skills-grid">{skillGroups.map(([name, items]) => <div className="skill-group" key={name}><h3>{name}</h3><p>{items.join(" / ")}</p></div>)}</div></section>;
+  return <section id="skills" className="content-section" aria-labelledby="skills-title"><SectionHeader id="skills-title" index="04" title="Skills" intro="A practical toolkit for taking an idea from workflow to working software." /><Sequence className="skills-grid" inView stagger={0.05}>{skillGroups.map(([name, items]) => <SequenceItem className="skill-group" key={name}><h3>{name}</h3><p>{items.join(" / ")}</p></SequenceItem>)}</Sequence></section>;
 }
 
 function EducationAndLanguages() {
@@ -179,7 +179,7 @@ function EducationAndLanguages() {
 }
 
 function Contact() {
-  return <section id="contact" className="contact-section" aria-labelledby="contact-title"><p className="section-kicker">07 / Contact</p><h2 id="contact-title">Have something worth <em>building?</em></h2><div className="contact-links"><a href="mailto:leulyitbarek4149@gmail.com">Email <ArrowUpRight size={15} /></a><a href="https://github.com/Lytech22" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={15} /></a><span>LinkedIn <small>soon</small></span><span>Download CV <small>soon</small></span></div></section>;
+  return <section id="contact" className="contact-section" aria-labelledby="contact-title"><Sequence inView stagger={0.085}><SequenceItem><p className="section-kicker">07 / Contact</p></SequenceItem><SequenceItem><h2 id="contact-title">Have something worth <em>building?</em></h2></SequenceItem><SequenceItem><div className="contact-links"><a href="mailto:leulyitbarek4149@gmail.com">Email <ArrowUpRight size={15} /></a><a href="https://github.com/Lytech22" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={15} /></a><span>LinkedIn <small>soon</small></span><span>Download CV <small>soon</small></span></div></SequenceItem></Sequence></section>;
 }
 
-function SectionHeader({ id, index, title, intro }: { id?: string; index: string; title: string; intro?: string }) { return <div className="section-header"><p id={id} className="section-kicker">{index} / {title}</p>{intro && <p className="section-intro">{intro}</p>}</div>; }
+function SectionHeader({ id, index, title, intro }: { id?: string; index: string; title: string; intro?: string }) { return <Reveal className="section-header"><p id={id} className="section-kicker">{index} / {title}</p>{intro && <p className="section-intro">{intro}</p>}</Reveal>; }

@@ -1,6 +1,7 @@
 "use client";
 
 import { Code2, Menu, X } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 
 const links = [
@@ -12,9 +13,10 @@ const links = [
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   return (
-    <header className="site-header">
+    <motion.header className="site-header" initial={reduceMotion ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
       <nav className="site-nav" aria-label="Main navigation">
         <a href="#top" className="wordmark">LY<span>.</span></a>
         <div className="desktop-links">
@@ -26,6 +28,6 @@ export function Navbar() {
         </div>
       </nav>
       {open && <div className="mobile-menu">{links.map(([label, href]) => <a href={href} key={href} onClick={() => setOpen(false)}>{label}</a>)}</div>}
-    </header>
+    </motion.header>
   );
 }
