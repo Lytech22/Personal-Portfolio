@@ -1,185 +1,185 @@
-"use client";
+import { ArrowUpRight } from "lucide-react";
+import { Reveal } from "./reveal";
 
-import { AnimatePresence, motion } from "framer-motion";
-import {
-  ArrowDown,
-  ArrowUpRight,
-  Check,
-  Code2,
-  Github,
-  Layers3,
-  Menu,
-  Sparkles,
-  X,
-} from "lucide-react";
-import { useState } from "react";
-
-const navItems = [
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+const currentProjects = [
+  { number: "01", title: "Smart Apartment Parking System" },
+  { number: "02", title: "Modern Gym OS" },
+  { number: "03", title: "Personal Portfolio" },
 ];
 
-const stack = ["Laravel", "React", "TypeScript", "Next.js", "PostgreSQL"];
+const featuredProjects = [
+  {
+    number: "01",
+    title: "Smart Apartment Parking System",
+    label: "Personal",
+    type: "Personal full-stack project",
+    status: "Active development",
+    description: "Apartment parking management system covering residents, vehicles, parking zones, availability, reservations, and role-based administration.",
+    stack: ["Laravel", "React", "TypeScript", "PostgreSQL"],
+    highlight: "Designed around real apartment parking workflows rather than a simple booking demo.",
+    repository: "In development",
+  },
+  {
+    number: "02",
+    title: "Modern Gym OS",
+    label: "Personal",
+    type: "Personal full-stack project",
+    status: "Active development",
+    description: "Gym operations platform covering memberships, staff access, attendance, subscriptions, member records, and operational reporting.",
+    stack: ["Laravel", "React", "TypeScript"],
+    repository: "In development",
+  },
+  {
+    number: "03",
+    title: "Mesob Performance Hub",
+    label: "Internship project",
+    type: "Internship / internal system project",
+    status: "Active development",
+    description: "Performance management platform designed for call-center operations, bringing together KPI tracking, quality evaluation, coaching, training, assessments, progress monitoring, and performance reporting.",
+    stack: ["PostgreSQL"],
+    highlight: "Admin, Team Leader, and Agent roles support KPI monitoring, QA evaluation, coaching, training, exams, certificates, notifications, and achievement concepts. Developed as part of internship/project work.",
+    repository: "Private repository",
+  },
+  {
+    number: "04",
+    title: "Mesob AI Customer Support Assistant",
+    label: "AI",
+    type: "AI / internship concept",
+    status: "In development / planning",
+    description: "AI-assisted customer support concept designed around an organization-specific knowledge base, with escalation to human agents when a request requires direct support.",
+    stack: [],
+    highlight: "The concept focuses on controlled answers from approved information, conversational support, human-agent escalation, and possible future integration with an existing support workflow.",
+    repository: "Private / internal project",
+  },
+];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
+const collaborationProjects = [
+  {
+    number: "05",
+    title: "Digital Event Invitation Platform",
+    label: "Collaboration",
+    status: "In development",
+    description: "Digital invitation platform designed around personalized event experiences, reusable invitation templates, guest-specific information, bilingual content, RSVP workflows, countdowns, and event programmes.",
+  },
+  {
+    number: "06",
+    title: "Fitness Meal Planning Platform",
+    label: "Client concept",
+    status: "Concept / development",
+    description: "Web platform concept for a fitness-focused meal preparation business, designed around structured meal plans, recurring subscriptions, nutrition-oriented presentation, and customer discovery.",
+  },
+  {
+    number: "07",
+    title: "Expense Tracker",
+    label: "Collaboration",
+    status: "In development",
+    description: "A collaborative expense-tracking application focused on recording spending, organizing transactions, and presenting personal financial activity clearly.",
+  },
+];
 
-export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+const labRows = ["Private systems", "Experiments", "Coursework", "Early product concepts", "Collaborative builds"];
 
-  return (
-    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 lg:px-10">
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between rounded-2xl border border-white/[0.09] bg-[#0c0d12]/75 px-4 shadow-2xl shadow-black/10 backdrop-blur-xl sm:px-6">
-        <a href="#top" className="group flex items-center gap-3" aria-label="Leul Yitbarek home">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-sm font-bold tracking-[-0.12em] text-[#0d0e13] transition-transform group-hover:rotate-[-6deg]">
-            LY.
-          </span>
-          <span className="hidden text-sm font-medium tracking-[-0.02em] text-white/75 sm:block">Leul Yitbarek</span>
-        </a>
+const experiences = [
+  ["2026 — Present", "Software Development / Current Projects", "Full-stack developer", "Building full-stack web applications while strengthening software architecture, database design, testing, and deployment skills."],
+  ["2025", "DMV-IT Support", "Virtual Assistant", "Researched job opportunities, tracked applications, improved CVs for ATS visibility, and supported clients preparing for interviews."],
+  ["2024 — 2025", "Exclusive Calls", "Sales Development Representative", "Worked on lead generation, prospect qualification, and relationship building in a performance-driven environment."],
+  ["2023 — 2024", "CCI Global", "Customer Service Representative", "Handled customer questions and concerns through clear communication, active listening, and practical problem solving."],
+  ["2023", "MMCY / Vermasoft", "Customer Service Representative", "Worked with changing customer needs and challenging conversations while maintaining calm, clear communication."],
+  ["2019 — 2020", "Raul Engineering Plc", "Site Operator", "Supported day-to-day site operations, employee attendance tracking, and basic work coordination."],
+] as Array<[string, string, string, string]>;
 
-        <div className="hidden items-center gap-7 md:flex">
-          {navItems.map((item) => (
-            <a key={item.href} href={item.href} className="nav-link">
-              {item.label}
-            </a>
-          ))}
-        </div>
-
-        <div className="flex items-center gap-2">
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noreferrer"
-            className="icon-button"
-            aria-label="Open GitHub profile"
-          >
-            <Github size={17} strokeWidth={1.7} />
-          </a>
-          <button
-            type="button"
-            className="icon-button md:hidden"
-            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-            aria-expanded={isOpen}
-            onClick={() => setIsOpen((open) => !open)}
-          >
-            {isOpen ? <X size={19} /> : <Menu size={19} />}
-          </button>
-        </div>
-      </nav>
-
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            className="mx-auto mt-2 max-w-7xl rounded-2xl border border-white/[0.09] bg-[#111218]/95 p-2 shadow-2xl backdrop-blur-xl md:hidden"
-          >
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className="block rounded-xl px-4 py-3 text-sm text-white/65 transition-colors hover:bg-white/[0.06] hover:text-white"
-              >
-                {item.label}
-              </a>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
-  );
-}
+const skillGroups: Array<[string, string[]]> = [
+  ["Frontend", ["React", "Next.js", "TypeScript", "Tailwind CSS"]],
+  ["Backend", ["Laravel", "PHP", "REST APIs"]],
+  ["Data", ["PostgreSQL", "MySQL"]],
+  ["Tools", ["Git", "GitHub", "GitHub Actions", "VS Code", "Vite"]],
+  ["Design", ["Photoshop", "Illustrator"]],
+];
 
 export function Hero() {
+  return <main id="top" className="editorial-main">
+    <section className="editorial-hero" aria-labelledby="hero-title">
+      <div className="hero-copy"><Reveal><p className="eyebrow">Leul Yitbarek <span>/</span> Full-stack developer</p><h1 id="hero-title">I build practical web systems around <em>real workflows.</em></h1><p className="hero-location">Based in Addis Ababa, Ethiopia.</p><p className="hero-support">Computer Science student working across frontend, backend, databases, and product workflows.</p><div className="hero-actions"><a className="text-link text-link-dark" href="#work">View projects <ArrowUpRight size={15} /></a><a className="text-link" href="https://github.com/Lytech22" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={15} /></a></div></Reveal></div>
+      <Reveal className="currently" delay={0.12}><p className="section-kicker">Currently</p>{currentProjects.map((project) => <a href="#work" className="current-item" key={project.number}><span>{project.number}</span><span>{project.title}</span></a>)}<div className="hero-stack"><p className="section-kicker">Stack</p><p>Laravel / React / TypeScript / PostgreSQL</p></div></Reveal>
+    </section>
+    <div className="hero-rule" />
+    <SelectedWork />
+    <About />
+    <Experience />
+    <Skills />
+    <EducationAndLanguages />
+    <Contact />
+    <footer className="site-footer"><span>© 2026 Leul Yitbarek</span><span>Addis Ababa, Ethiopia</span></footer>
+  </main>;
+}
+
+function SelectedWork() {
   return (
-    <section id="top" className="relative flex min-h-[min(900px,100svh)] items-center overflow-hidden px-6 pb-16 pt-32 lg:px-10">
-      <div className="hero-grid absolute inset-0" aria-hidden="true" />
-      <div className="ambient ambient-one" aria-hidden="true" />
-      <div className="ambient ambient-two" aria-hidden="true" />
-      <div className="hero-orbit hero-orbit-one" aria-hidden="true" />
-      <div className="hero-orbit hero-orbit-two" aria-hidden="true" />
+    <section id="work" className="content-section work-section" aria-labelledby="work-title">
+      <SectionHeader id="work-title" index="01" title="Selected work" intro="Personal projects, internship work, and collaborations—presented with clear ownership and publication status." />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[minmax(0,1fr)_330px] xl:grid-cols-[minmax(0,1fr)_390px]">
-        <motion.div initial="hidden" animate="visible" transition={{ staggerChildren: 0.09, delayChildren: 0.15 }}>
-          <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="mb-7 flex items-center gap-3 text-[11px] font-semibold tracking-[0.24em] text-blue-300/80">
-            <span className="h-1.5 w-1.5 rounded-full bg-blue-300 shadow-[0_0_14px_rgba(147,197,253,0.9)]" />
-            FULL-STACK DEVELOPER
-          </motion.div>
-          <motion.h1 variants={fadeUp} transition={{ duration: 0.7 }} className="max-w-4xl text-[clamp(3.5rem,8vw,7.8rem)] font-semibold leading-[0.94] tracking-[-0.075em] text-white">
-            Building digital experiences <span className="text-gradient">that work beautifully.</span>
-          </motion.h1>
-          <motion.p variants={fadeUp} transition={{ duration: 0.7 }} className="mt-8 max-w-xl text-base leading-7 text-white/55 sm:text-lg sm:leading-8">
-            Hi, I&apos;m Leul Yitbarek — a Computer Science student and full-stack developer focused on building reliable, modern web applications.
-          </motion.p>
-          <motion.div variants={fadeUp} transition={{ duration: 0.7 }} className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <a href="#projects" className="button-primary">View My Work <ArrowUpRight size={17} /></a>
-            <a href="#contact" className="button-secondary">Let&apos;s Talk <ArrowUpRight size={17} /></a>
-          </motion.div>
-          <motion.div variants={fadeUp} transition={{ duration: 0.7 }} className="mt-10 inline-flex items-center gap-2.5 rounded-full border border-white/[0.09] bg-white/[0.035] px-3.5 py-2 text-xs text-white/55">
-            <span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/60" /><span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" /></span>
-            Available for opportunities
-          </motion.div>
-        </motion.div>
-
-        <motion.div initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9, delay: 0.45 }} className="relative hidden min-h-[330px] lg:block">
-          <div className="glass-card absolute inset-6 rotate-[-5deg] opacity-40" />
-          <div className="glass-card absolute inset-3 rotate-[3deg] opacity-65" />
-          <div className="glass-card relative flex h-[330px] flex-col justify-between overflow-hidden p-7">
-            <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-violet-400/15 blur-3xl" />
-            <div className="flex items-center justify-between text-white/35"><Code2 size={20} /><span className="font-mono text-[10px] tracking-[0.22em]">01 / 05</span></div>
-            <div><div className="mb-4 h-px w-16 bg-blue-300/60" /><p className="max-w-[220px] text-2xl font-medium leading-tight tracking-[-0.04em] text-white/90">Thoughtful code. Tangible impact.</p></div>
-            <div className="flex items-center justify-between text-xs text-white/35"><span>Leul Yitbarek</span><Sparkles size={15} /></div>
-          </div>
-        </motion.div>
+      <div className="work-group" aria-labelledby="featured-work-title">
+        <div className="work-group-header"><p id="featured-work-title" className="section-kicker">01 / Featured work</p><span>Four systems and concepts</span></div>
+        <div className="project-list">
+          {featuredProjects.map((project, index) => (
+            <Reveal key={project.number} delay={index * 0.04}>
+              <article className={`project-row project-${index + 1}`}>
+                <div className="project-info">
+                  <div className="project-meta"><span>{project.number} / {project.label}</span><span className={project.status === "Active development" ? "status-active" : undefined}>{project.status}</span></div>
+                  <h3>{project.title}</h3>
+                  <p className="project-type">{project.type}</p>
+                  <p>{project.description}</p>
+                  {project.highlight && <p className="project-highlight">{project.highlight}</p>}
+                  {project.stack.length > 0 && <div className="project-stack">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>}
+                  <p className="repository-status">{project.repository}</p>
+                </div>
+                <div className="screenshot-placeholder" aria-label={`${project.title} screenshot placeholder`}><span>{project.title}</span><small>Screenshot placeholder</small></div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
       </div>
 
-      <a href="#about" className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-white/30 transition-colors hover:text-white/70 sm:flex">
-        Scroll to explore <ArrowDown size={14} className="animate-bounce" />
-      </a>
+      <div className="work-group compact-work" aria-labelledby="collaboration-work-title">
+        <div className="work-group-header"><p id="collaboration-work-title" className="section-kicker">02 / Collaborations &amp; product work</p><span>Shared builds and early business concepts</span></div>
+        <div className="compact-project-list">
+          {collaborationProjects.map((project) => (
+            <article className="compact-project" key={project.number}>
+              <div className="compact-project-heading"><span className="compact-number">{project.number}</span><div><p className="project-label">{project.label}</p><h3>{project.title}</h3></div></div>
+              <p>{project.description}</p>
+              <span className="compact-status">{project.status}</span>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div className="work-group lab-work" aria-labelledby="lab-work-title">
+        <div className="lab-intro"><p className="section-kicker">03 / Lab &amp; private work</p><h3 id="lab-work-title">More in the lab.</h3><p>Not everything I work on is public. I also use private repositories for experiments, coursework, early product ideas, internal systems, and projects that are not ready to publish.</p></div>
+        <div className="lab-list">{labRows.map((item, index) => <div key={item}><span>{String(index + 1).padStart(2, "0")}</span><span>{item}</span><small>Private</small></div>)}</div>
+        <p className="lab-note">More projects will be published as they reach a presentable stage.</p>
+      </div>
     </section>
   );
 }
 
-export function StackRow() {
-  return (
-    <div className="border-y border-white/[0.07] bg-white/[0.015] px-6 lg:px-10">
-      <div className="mx-auto flex max-w-7xl flex-col gap-5 py-6 sm:flex-row sm:items-center sm:justify-between">
-        <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/30">Comfortable across the stack</span>
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-white/50 sm:gap-x-8">
-          {stack.map((item) => <span key={item} className="transition-colors hover:text-white">{item}</span>)}
-        </div>
-      </div>
-    </div>
-  );
+function About() {
+  return <section id="about" className="content-section about-section" aria-labelledby="about-title"><SectionHeader index="02" title="About" /><div className="editorial-two-col"><h2 id="about-title">I like understanding the problem before writing the code.</h2><p>My background spans customer service, sales, operations, and software development. Those roles taught me how people communicate, how workflows fail, and how important it is to understand the real problem before building a solution.</p></div></section>;
 }
 
-export function SupportingSections() {
-  return (
-    <div className="mx-auto max-w-7xl px-6 lg:px-10">
-      <section id="about" className="section-grid grid gap-10 py-28 md:grid-cols-[0.7fr_1.3fr] md:py-36">
-        <SectionLabel number="01" label="About" />
-        <div><h2 className="section-title">I care about the details that make products feel inevitable.</h2><p className="section-copy mt-7">From the first line of code to the final interaction, I bring a product-minded approach to full-stack development. The goal is always the same: make complex things feel clear, useful, and a little delightful.</p></div>
-      </section>
-      <section id="projects" className="section-grid border-t border-white/[0.07] py-28 md:py-36"><SectionLabel number="02" label="Projects" /><div className="grid gap-4 md:grid-cols-2"><ProjectCard title="Selected work" description="A collection of reliable, human-centered web products in progress." tag="Coming soon" /><ProjectCard title="Open source" description="Tools and experiments built to make the web a more thoughtful place." tag="Exploring" /></div></section>
-      <section id="skills" className="section-grid grid gap-10 border-t border-white/[0.07] py-28 md:grid-cols-[0.7fr_1.3fr] md:py-36"><SectionLabel number="03" label="Skills" /><div className="grid grid-cols-2 gap-x-6 gap-y-5 text-lg tracking-[-0.03em] text-white/75 sm:grid-cols-3"><span>Frontend architecture</span><span>Design systems</span><span>API development</span><span>Database design</span><span>Product thinking</span><span>Performance</span></div></section>
-      <section id="experience" className="section-grid border-t border-white/[0.07] py-28 md:py-36"><SectionLabel number="04" label="Experience" /><div className="flex items-start gap-4 text-white/70"><Layers3 className="mt-1 text-blue-300/70" size={20} /><div><p className="text-xl tracking-[-0.03em] text-white">Building with intention</p><p className="mt-2 max-w-lg leading-7 text-white/45">Currently studying Computer Science and growing through hands-on product and engineering work.</p></div></div></section>
-      <section id="contact" className="relative overflow-hidden border-t border-white/[0.07] py-28 md:py-36"><div className="ambient ambient-two" aria-hidden="true" /><div className="relative z-10"><SectionLabel number="05" label="Contact" /><div className="mt-10 flex flex-col justify-between gap-10 md:flex-row md:items-end"><h2 className="section-title max-w-2xl">Have a good idea? <span className="text-gradient">Let&apos;s make it real.</span></h2><a href="mailto:hello@leulyitbarek.dev" className="button-primary shrink-0">Get in touch <ArrowUpRight size={17} /></a></div></div></section>
-      <footer className="flex flex-col gap-3 border-t border-white/[0.07] py-7 text-xs text-white/30 sm:flex-row sm:items-center sm:justify-between"><span>© 2025 Leul Yitbarek</span><span className="flex items-center gap-2"><Check size={13} className="text-emerald-400" /> Built with care</span></footer>
-    </div>
-  );
+function Experience() {
+  return <section id="experience" className="content-section" aria-labelledby="experience-title"><SectionHeader id="experience-title" index="03" title="Experience" intro="Work that taught me how people, systems, and expectations meet." /><div className="experience-list">{experiences.map(([date, company, role, description]) => <article className="experience-row" key={`${company}-${date}`}><time>{date}</time><div><h3>{company}</h3><p className="experience-role">{role}</p><p className="experience-description">{description}</p></div><span className="row-arrow">↗</span></article>)}</div></section>;
 }
 
-function SectionLabel({ number, label }: { number: string; label: string }) {
-  return <div className="mb-8 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-blue-300/70 md:mb-0"><span className="font-mono text-white/25">{number}</span><span className="h-px w-8 bg-white/20" />{label}</div>;
+function Skills() {
+  return <section id="skills" className="content-section" aria-labelledby="skills-title"><SectionHeader id="skills-title" index="04" title="Skills" intro="A practical toolkit for taking an idea from workflow to working software." /><div className="skills-grid">{skillGroups.map(([name, items]) => <div className="skill-group" key={name}><h3>{name}</h3><p>{items.join(" / ")}</p></div>)}</div></section>;
 }
 
-function ProjectCard({ title, description, tag }: { title: string; description: string; tag: string }) {
-  return <article className="group rounded-2xl border border-white/[0.08] bg-white/[0.025] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-200/25 hover:bg-white/[0.045]"><div className="mb-16 flex items-center justify-between"><span className="rounded-full border border-white/10 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-white/35">{tag}</span><ArrowUpRight size={17} className="text-white/25 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></div><h3 className="text-xl tracking-[-0.03em] text-white">{title}</h3><p className="mt-2 max-w-xs text-sm leading-6 text-white/40">{description}</p></article>;
+function EducationAndLanguages() {
+  return <section className="content-section compact-section"><div className="compact-block"><SectionHeader index="05" title="Education" /><div><h2>Kibure College</h2><p>Computer Science <span>2024–2028</span></p></div></div><div className="compact-block"><SectionHeader index="06" title="Languages" /><div className="language-list"><span>Amharic <small>Fluent</small></span><span>English <small>Fluent</small></span><span>Spanish <small>Basic</small></span><span>French <small>Basic</small></span></div></div></section>;
 }
+
+function Contact() {
+  return <section id="contact" className="contact-section" aria-labelledby="contact-title"><p className="section-kicker">07 / Contact</p><h2 id="contact-title">Have something worth <em>building?</em></h2><div className="contact-links"><a href="mailto:leulyitbarek4149@gmail.com">Email <ArrowUpRight size={15} /></a><a href="https://github.com/Lytech22" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={15} /></a><span>LinkedIn <small>soon</small></span><span>Download CV <small>soon</small></span></div></section>;
+}
+
+function SectionHeader({ id, index, title, intro }: { id?: string; index: string; title: string; intro?: string }) { return <div className="section-header"><p id={id} className="section-kicker">{index} / {title}</p>{intro && <p className="section-intro">{intro}</p>}</div>; }

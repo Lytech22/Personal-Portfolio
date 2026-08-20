@@ -1,14 +1,11 @@
-import { Hero, Navbar, StackRow, SupportingSections } from "./components/portfolio-ui";
+import { Navbar } from "./components/navbar";
+import { Hero } from "./components/portfolio-ui";
 
 export default function Home() {
   return (
     <div>
       <Navbar />
-      <main>
-        <Hero />
-        <StackRow />
-        <SupportingSections />
-      </main>
+      <Hero />
     </div>
   );
 }
