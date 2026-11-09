@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import { Reveal, Sequence, SequenceItem } from "./reveal";
 
 const currentProjects = [
@@ -11,6 +12,12 @@ const featuredProjects = [
   {
     number: "01",
     title: "Smart Apartment Parking System",
+    image: {
+      src: "/projects/smart-apartment-parking.webp",
+      width: 1600,
+      height: 793,
+      alt: "Smart Apartment Parking System landing page",
+    },
     label: "Personal",
     type: "Personal full-stack project",
     status: "Active development",
@@ -22,6 +29,12 @@ const featuredProjects = [
   {
     number: "02",
     title: "Modern Gym OS",
+    image: {
+      src: "/projects/modern-gym-os.webp",
+      width: 1600,
+      height: 779,
+      alt: "Modern Gym OS landing page",
+    },
     label: "Personal",
     type: "Personal full-stack project",
     status: "Active development",
@@ -32,6 +45,12 @@ const featuredProjects = [
   {
     number: "03",
     title: "Mesob Performance Hub",
+    image: {
+      src: "/projects/mesob-performance-hub-dashboard.webp",
+      width: 1600,
+      height: 777,
+      alt: "Mesob Performance Hub administration dashboard",
+    },
     label: "Internship project",
     type: "Internship / internal system project",
     status: "Active development",
@@ -43,6 +62,12 @@ const featuredProjects = [
   {
     number: "04",
     title: "Mesob AI Customer Support Assistant",
+    image: {
+      src: "/projects/mesob-ai-support-progress.webp",
+      width: 1280,
+      height: 720,
+      alt: "Progress visualization for the Mesob AI Customer Support Assistant project",
+    },
     label: "AI",
     type: "AI / internship concept",
     status: "In development / planning",
@@ -133,7 +158,17 @@ function SelectedWork() {
                   {project.stack.length > 0 && <div className="project-stack">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>}
                   <p className="repository-status">{project.repository}</p>
                 </div>
-                <Reveal className="project-visual" mode="scale"><div className="screenshot-placeholder" aria-label={`${project.title} screenshot placeholder`}><span>{project.title}</span><small>Screenshot placeholder</small></div></Reveal>
+                <Reveal className="project-visual" mode="scale">
+                  <div className="project-image">
+                    <Image
+                      src={project.image.src}
+                      alt={project.image.alt}
+                      width={project.image.width}
+                      height={project.image.height}
+                      sizes="(max-width: 520px) calc(100vw - 2.5rem), (max-width: 800px) 90vw, (max-width: 1440px) 41.5vw, calc(720px - 8.5vw)"
+                    />
+                  </div>
+                </Reveal>
               </article>
             </Reveal>
           ))}
