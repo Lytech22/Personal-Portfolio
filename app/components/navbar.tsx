@@ -23,7 +23,7 @@ export function Navbar() {
           {links.map(([label, href]) => <a href={href} key={href}>{label}</a>)}
         </div>
         <div className="nav-actions">
-          <a href="https://github.com/Lytech22" target="_blank" rel="noreferrer" className="github-link" aria-label="Open Leul's GitHub profile"><Code2 size={16} /> <span>GitHub</span></a>
+          <a href="https://github.com/Lytech22" target="_blank" rel="noopener noreferrer" className="github-link" aria-label="Open Leul's GitHub profile"><Code2 size={16} /> <span>GitHub</span></a>
           <button type="button" className="menu-button" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen((value) => !value)}>{open ? <X size={18} /> : <Menu size={18} />}</button>
         </div>
       </nav>

@@ -19,12 +19,12 @@ const featuredProjects = [
       alt: "Smart Apartment Parking System landing page",
     },
     label: "Personal",
-    type: "Personal full-stack project",
+    type: "Personal project",
     status: "Active development",
     description: "Apartment parking management system covering residents, vehicles, parking zones, availability, reservations, and role-based administration.",
     stack: ["Laravel", "React", "TypeScript", "PostgreSQL"],
     highlight: "Designed around real apartment parking workflows rather than a simple booking demo.",
-    repository: "In development",
+    repository: "Private repository",
   },
   {
     number: "02",
@@ -36,11 +36,11 @@ const featuredProjects = [
       alt: "Modern Gym OS landing page",
     },
     label: "Personal",
-    type: "Personal full-stack project",
+    type: "Personal project",
     status: "Active development",
     description: "Gym operations platform covering memberships, staff access, attendance, subscriptions, member records, and operational reporting.",
     stack: ["Laravel", "React", "TypeScript"],
-    repository: "In development",
+    repository: "Private repository",
   },
   {
     number: "03",
@@ -52,7 +52,7 @@ const featuredProjects = [
       alt: "Mesob Performance Hub administration dashboard",
     },
     label: "Internship project",
-    type: "Internship / internal system project",
+    type: "Internship / internal project",
     status: "Active development",
     description: "Performance management platform designed for call-center operations, bringing together KPI tracking, quality evaluation, coaching, training, assessments, progress monitoring, and performance reporting.",
     stack: ["PostgreSQL"],
@@ -69,12 +69,12 @@ const featuredProjects = [
       alt: "Progress visualization for the Mesob AI Customer Support Assistant project",
     },
     label: "AI",
-    type: "AI / internship concept",
+    type: "AI / internship project",
     status: "In development / planning",
     description: "AI-assisted customer support concept designed around an organization-specific knowledge base, with escalation to human agents when a request requires direct support.",
     stack: [],
     highlight: "The concept focuses on controlled answers from approved information, conversational support, human-agent escalation, and possible future integration with an existing support workflow.",
-    repository: "Private / internal project",
+    repository: "Private repository",
   },
 ];
 
@@ -124,7 +124,7 @@ const skillGroups: Array<[string, string[]]> = [
 export function Hero() {
   return <main id="top" className="editorial-main">
     <section className="editorial-hero" aria-labelledby="hero-title">
-      <div className="hero-copy"><Sequence delay={0.08} stagger={0.075}><SequenceItem><p className="eyebrow">Leul Yitbarek <span>/</span> Full-stack developer</p></SequenceItem><SequenceItem><h1 id="hero-title">I build practical web systems around <em>real workflows.</em></h1></SequenceItem><SequenceItem><div><p className="hero-location">Based in Addis Ababa, Ethiopia.</p><p className="hero-support">Computer Science student working across frontend, backend, databases, and product workflows.</p></div></SequenceItem><SequenceItem><div className="hero-actions"><a className="text-link text-link-dark" href="#work">View projects <ArrowUpRight size={15} /></a><a className="text-link" href="https://github.com/Lytech22" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={15} /></a></div></SequenceItem></Sequence></div>
+      <div className="hero-copy"><Sequence delay={0.08} stagger={0.075}><SequenceItem><p className="eyebrow">Leul Yitbarek <span>/</span> Full-stack developer</p></SequenceItem><SequenceItem><h1 id="hero-title">I build practical web systems around <em>real workflows.</em></h1></SequenceItem><SequenceItem><div><p className="hero-location">Based in Addis Ababa, Ethiopia.</p><p className="hero-support">Computer Science student working across frontend, backend, databases, and product workflows.</p></div></SequenceItem><SequenceItem><div className="hero-actions"><a className="text-link text-link-dark" href="#work">View projects <ArrowUpRight size={15} /></a><a className="text-link" href="https://github.com/Lytech22" target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight size={15} /></a></div></SequenceItem></Sequence></div>
       <Reveal className="currently" delay={0.42}><p className="section-kicker">Currently</p>{currentProjects.map((project) => <a href="#work" className="current-item" key={project.number}><span>{project.number}</span><span>{project.title}</span></a>)}<div className="hero-stack"><p className="section-kicker">Stack</p><p>Laravel / React / TypeScript / PostgreSQL</p></div></Reveal>
     </section>
     <div className="hero-rule" />
@@ -214,7 +214,7 @@ function EducationAndLanguages() {
 }
 
 function Contact() {
-  return <section id="contact" className="contact-section" aria-labelledby="contact-title"><Sequence inView stagger={0.085}><SequenceItem><p className="section-kicker">07 / Contact</p></SequenceItem><SequenceItem><h2 id="contact-title">Have something worth <em>building?</em></h2></SequenceItem><SequenceItem><div className="contact-links"><a href="mailto:leulyitbarek4149@gmail.com">Email <ArrowUpRight size={15} /></a><a href="https://github.com/Lytech22" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={15} /></a><span>LinkedIn <small>soon</small></span><span>Download CV <small>soon</small></span></div></SequenceItem></Sequence></section>;
+  return <section id="contact" className="contact-section" aria-labelledby="contact-title"><Sequence inView stagger={0.085}><SequenceItem><p className="section-kicker">07 / Contact</p></SequenceItem><SequenceItem><h2 id="contact-title">Have something worth <em>building?</em></h2></SequenceItem><SequenceItem><div className="contact-links"><a href="mailto:leulyitbarek4149@gmail.com">Email <ArrowUpRight size={15} /></a><a href="https://github.com/Lytech22" target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight size={15} /></a><a href="https://www.linkedin.com/in/leul-yitbarek-b1b857314" target="_blank" rel="noopener noreferrer" aria-label="Open Leul's LinkedIn profile">LinkedIn <ArrowUpRight size={15} /></a><span>Download CV <small>soon</small></span></div></SequenceItem></Sequence></section>;
 }
 
 function SectionHeader({ id, index, title, intro }: { id?: string; index: string; title: string; intro?: string }) { return <Reveal className="section-header"><p id={id} className="section-kicker">{index} / {title}</p>{intro && <p className="section-intro">{intro}</p>}</Reveal>; }
