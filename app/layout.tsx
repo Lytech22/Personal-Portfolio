@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
+import { isIndexable, siteUrl } from "./lib/seo";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -17,16 +18,6 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 const title = "Leul Yitbarek | Full-Stack Developer";
 const description = "Full-stack developer based in Addis Ababa, Ethiopia. Building practical web applications with Laravel, React, TypeScript, and PostgreSQL.";
-const configuredSiteUrl = process.env.SITE_URL?.trim();
-const siteUrl = configuredSiteUrl ? new URL(configuredSiteUrl) : undefined;
-
-if (siteUrl && (
-  !["http:", "https:"].includes(siteUrl.protocol) ||
-  siteUrl.username || siteUrl.password || siteUrl.search || siteUrl.hash ||
-  siteUrl.pathname !== "/"
-)) {
-  throw new Error("SITE_URL must be an absolute HTTP(S) origin with no path, credentials, query, or fragment.");
-}
 
 export const metadata: Metadata = {
   // Local URLs are for preview images only; never emit a localhost canonical.
@@ -48,10 +39,10 @@ export const metadata: Metadata = {
     description,
   },
   robots: {
-    index: Boolean(siteUrl),
+    index: isIndexable,
     follow: true,
     googleBot: {
-      index: Boolean(siteUrl),
+      index: isIndexable,
       follow: true,
       "max-image-preview": "large",
       "max-snippet": -1,

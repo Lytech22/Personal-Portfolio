@@ -24,9 +24,11 @@ This project uses `next/font` to optimize and self-host Instrument Sans and IBM 
 
 Set the server environment variable `SITE_URL` to the portfolio's real public origin before running `npm run build` on your production host. Include `https://` and the actual hostname, with no path, query, or fragment. No deployment domain is assumed in source control.
 
-When `SITE_URL` is set, it supplies the canonical URL, Open Graph URL, and production Open Graph/Twitter image URLs, and enables search indexing. Rebuild/redeploy after changing it because the homepage and social images are statically generated.
+When `SITE_URL` is set, it supplies the canonical URL, Open Graph URL, production Open Graph/Twitter image URLs, and sitemap homepage URL. Search indexing is enabled for production builds only; Vercel preview, development, and custom non-production environments remain `noindex` even if they inherit `SITE_URL`. Rebuild/redeploy after changing it because the homepage and SEO routes are statically generated.
 
-Without `SITE_URL`, development and builds still work. Canonical and Open Graph page URLs are omitted, robots metadata is `noindex, follow`, and local image URLs use `http://localhost:3000` (or the `PORT` environment variable). Next.js keeps file-based image URLs local during development and may use a platform-provided origin on Vercel previews. Leave `SITE_URL` unset for previews you do not want indexed. Local image URLs are not usable by public social crawlers.
+Without `SITE_URL`, development and builds still work. Canonical and Open Graph page URLs are omitted, robots metadata is `noindex, follow`, and local image URLs use `http://localhost:3000` (or the `PORT` environment variable). Next.js keeps file-based image URLs local during development and may use a platform-provided origin on Vercel previews. Local image URLs are not usable by public social crawlers.
+
+`/robots.txt` allows crawling and points to `/sitemap.xml` on the configured production origin. The sitemap includes only the public homepage. Development, preview, and builds without `SITE_URL` disallow crawling and return an empty sitemap. Both routes and page indexing metadata share the configuration in `app/lib/seo.ts`.
 
 The 1200 × 630 previews are generated at `/opengraph-image` and `/twitter-image` using `ImageResponse` and local, licensed fonts in `assets/fonts/`. Their image metadata and alt text are managed by Next.js file conventions; no browser-side image generation or runtime font downloads are needed. `/icon.svg` is the primary favicon, with a matching `/favicon.ico` fallback.
 
