@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import { CopyEmail } from "./copy-email";
 import { Reveal, Sequence, SequenceItem } from "./reveal";
 
 const currentProjects = [
@@ -214,7 +215,7 @@ function EducationAndLanguages() {
 }
 
 function Contact() {
-  return <section id="contact" className="contact-section" aria-labelledby="contact-title"><Sequence inView stagger={0.085}><SequenceItem><p className="section-kicker">07 / Contact</p></SequenceItem><SequenceItem><h2 id="contact-title">Have something worth <em>building?</em></h2></SequenceItem><SequenceItem><div className="contact-links"><a href="mailto:leulyitbarek4149@gmail.com">Email <ArrowUpRight size={15} /></a><a href="https://github.com/Lytech22" target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight size={15} /></a><a href="https://www.linkedin.com/in/leul-yitbarek-b1b857314" target="_blank" rel="noopener noreferrer" aria-label="Open Leul's LinkedIn profile">LinkedIn <ArrowUpRight size={15} /></a><a href="/Leul_Yitbarek_CV.pdf" download="Leul_Yitbarek_CV.pdf" aria-label="Download Leul Yitbarek's CV PDF">Download CV <ArrowUpRight size={15} /></a></div></SequenceItem></Sequence></section>;
+  return <section id="contact" className="contact-section" aria-labelledby="contact-title"><Sequence inView stagger={0.085}><SequenceItem><p className="section-kicker">07 / Contact</p></SequenceItem><SequenceItem><h2 id="contact-title">Have something worth <em>building?</em></h2></SequenceItem><SequenceItem><div className="contact-links"><a href="mailto:leulyitbarek4149@gmail.com">Email <ArrowUpRight size={15} /></a><CopyEmail /><a href="https://github.com/Lytech22" target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight size={15} /></a><a href="https://www.linkedin.com/in/leul-yitbarek-b1b857314" target="_blank" rel="noopener noreferrer" aria-label="Open Leul's LinkedIn profile">LinkedIn <ArrowUpRight size={15} /></a><a href="/Leul_Yitbarek_CV.pdf" download="Leul_Yitbarek_CV.pdf" aria-label="Download Leul Yitbarek's CV PDF">Download CV <ArrowUpRight size={15} /></a></div></SequenceItem></Sequence></section>;
 }
 
 function SectionHeader({ id, index, title, intro }: { id?: string; index: string; title: string; intro?: string }) { return <Reveal className="section-header"><p id={id} className="section-kicker">{index} / {title}</p>{intro && <p className="section-intro">{intro}</p>}</Reveal>; }
